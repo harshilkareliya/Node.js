@@ -1,8 +1,8 @@
 const fs = require('fs')
 
-console.log('Please Wait 10 second for reading file')
+console.log('Please Wait 3 second for reading file')
 
-var a = 10
+var a = 3
 
 const countDown = setInterval(()=>{
     console.log(a)
