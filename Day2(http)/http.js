@@ -5,7 +5,6 @@ const server = http.createServer( async (req, res)=>{
     const path = req.url;
     const method = req.method;
 
-
     if(path.includes('file') && method=='GET'){
         const fileName = path.split('/').pop()
         console.log(fileName)
@@ -25,3 +24,4 @@ const server = http.createServer( async (req, res)=>{
 server.listen(6700, ()=>{
     console.log("Server is running")
 })
+
