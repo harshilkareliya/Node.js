@@ -26,7 +26,6 @@ const middlewared = (req,res,next)=>{
         res.redirect('/')
     }
 }
-
 app.get("/", (req, res) => {
 
     res.render("index", {
@@ -92,5 +91,4 @@ app.get('/admin',(req,res)=>{
 })
 
 
-app.use(middlewared)
-app.listen(3000, console.log("Server Started......"));
+app.listen(7000, console.log("Server Started......"));
