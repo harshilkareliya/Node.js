@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TO DO</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <style>
         body {
@@ -53,13 +54,11 @@
     </style>
 </head>
 <body>
-
     <div class="container">
         <h1>TO DO App</h1>
-
         <div class="form-container">
             <form action="/addtask" method="post" class="d-flex align-items-center">
-                <input type="text" name="task" class="form-control task-input" placeholder="Add your task" required style="margin-right: 10px;">
+                <input type="text" name="task" class="form-control task-input" placeholder="Add your task" required>
                 <select name="priority" style="width: 150px; margin-right: 10px;height: 40px;border-radius: 50px;">
                     <option value="High">High</option>
                     <option value="Medium">Medium</option>
@@ -68,8 +67,6 @@
                 <button type="submit" class="btn btn-primary" style="height: 38px;">Add Task</button>
             </form>
         </div>
-        
-
         <table class="table table-hover table-bordered">
             <thead class="table-dark">
                 <tr>
@@ -81,21 +78,37 @@
                 </tr>
             </thead>
             <tbody>
-                <% allTask.map((el) => { %>
+                <% activeTask.map((el)=> { %>
                     <tr>
-                        <th scope="row" class="col-1" style="text-align: center;font-size: 20px;"><input type="checkbox" name="" id=""></th>
+                        <th scope="row" class="col-1" style="text-align: center;font-size: 20px;">
+                            <input type="checkbox" name="" id="" onclick="redirectToComplete('<%= el.id %>')" <%= el.iscomplete ? 'checked' : '' %>>
+                        </th>
                         <td><%= el.task %></td>
                         <td class="col-2"><%= el.priority %></td>
                         <td class="col-1"><a href="/editTask?id=<%= el.id %>" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a></td>
                         <td class="col-1"><a href="/deleteTask?id=<%= el.id %>" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></a></td>
                     </tr>
                 <% }) %>
+                <% completeTask.map((el)=> { %>
+                    <tr>
+                        <th scope="row" class="col-1" style="text-align: center;font-size: 20px;">
+                            <input type="checkbox" name="" id="" onclick="redirectToComplete('<%= el.id %>')" <%= el.iscomplete ? 'checked' : '' %>>
+                        </th>
+                        <td><%= el.task %></td>
+                        <td class="col-2"><%= el.priority %></td>
+                        <td class="col-1" style="cursor: not-allowed;opacity: 0.3;"><a class="btn btn-warning btn-sm" style="cursor: not-allowed;"><i class="fas fa-edit"></i></a></td>
+                        <td class="col-1"><a href="/deleteTask?id=<%= el.id %>" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></a></td>
+                    </tr>
+                <% }) %>
             </tbody>
         </table>
     </div>
-
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz4fnFO9gybBogGz5xZLJ8eBbbF5a8p2RdweOjnNNISF+0wTQqUOBR8VcQ" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuMij68LM8d3a7zWmRmWI/a9lWqXBgV8zEB0DJJ+z4IidDA6mkXQeSjaAqPcK7N0" crossorigin="anonymous"></script>
-
 </body>
 </html>
+<script>
+    function redirectToComplete(id) {
+        window.location.href = '/iscomplete?id=' + id;
+    }
+</script>
