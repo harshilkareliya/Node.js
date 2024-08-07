@@ -103,19 +103,6 @@
             </thead>
             <tbody>
                 <div>
-                    <% activeTask.map((el)=> { %>
-                        <tr class="activeTasks">
-                            <th scope="row" class="col-1" style="text-align: center;font-size: 20px;">
-                                <input type="checkbox" name="" id="" onclick="redirectToComplete('<%= el.id %>')" <%= el.iscomplete ? 'checked' : '' %>>
-                            </th>
-                            <td><%= el.task %></td>
-                            <td class="col-2"><%= el.priority %></td>
-                            <td class="col-1"><a href="/editTask?id=<%= el.id %>" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a></td>
-                            <td class="col-1"><a href="/deleteTask?id=<%= el.id %>" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></a></td>
-                        </tr>
-                    <% }) %>
-                </div>
-                <div>
                     <% completeTask.map((el)=> { %>
                         <tr class="completeTasks">
                             <th scope="row" class="col-1" style="text-align: center;font-size: 20px;">
@@ -137,7 +124,7 @@
 </html>
 <script>
     function redirectToComplete(id) {
-        window.location.href = '/iscomplete?id=' + id + '&from=all';
+        window.location.href = '/iscomplete?id=' + id + '&from=completeTask';
     }
 
 </script>

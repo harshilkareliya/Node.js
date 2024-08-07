@@ -62,13 +62,30 @@ app.post('/updateTask', (req, res) => {
 
 app.get('/iscomplete', (req, res) => {
     const id = req.query.id
+    const from = req.query.from
     const data = allTask.find(el => el.id == id)
-
     if (data) {
         data.iscomplete = !data.iscomplete
     }
 
-    res.redirect('/')
+    if(from == 'activeTask'){
+        res.redirect('/activeTask')
+    } else if(from == 'completeTask'){
+        res.redirect('/completeTask')
+    } else{
+        res.redirect('/')
+    }
 })
 
+app.get('/activeTask',(req,res)=>{
+    const activeTask = allTask.filter((el) => el.iscomplete == false);
+
+    res.render('activeTask',{activeTask})
+})
+
+app.get('/completeTask',(req,res)=>{
+    const completeTask = allTask.filter((el) => el.iscomplete == true);
+
+    res.render('completeTask',{completeTask})
+})
 app.listen(3000, () => console.log("Server is starting... on port 3000"))
