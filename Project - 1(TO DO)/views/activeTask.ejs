@@ -96,9 +96,9 @@
                 <tr>
                     <th scope="col"></th>
                     <th scope="col">Task</th>
-                    <th scope="col">Priority</th>
-                    <th scope="col">Edit</th>
-                    <th scope="col">Remove</th>
+                    <th scope="col" style="text-align: center;" >Priority</th>
+                    <th scope="col" style="text-align: center;" >Edit</th>
+                    <th scope="col" style="text-align: center;" >Remove</th>
                 </tr>
             </thead>
             <tbody>
@@ -109,9 +109,9 @@
                                 <input type="checkbox" name="" id="" onclick="redirectToComplete('<%= el.id %>')" <%= el.iscomplete ? 'checked' : '' %>>
                             </th>
                             <td><%= el.task %></td>
-                            <td class="col-2"><%= el.priority %></td>
-                            <td class="col-1"><a href="/editTask?id=<%= el.id %>" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a></td>
-                            <td class="col-1"><a href="/deleteTask?id=<%= el.id %>" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></a></td>
+                            <td class="col-2" style="text-align: center;" ><%= el.priority %></td>
+                            <td class="col-1" style="text-align: center;" ><a href="/editTask?id=<%= el.id %>" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a></td>
+                            <td class="col-1" style="text-align: center;" ><a href="/deleteTask?id=<%= el.id %>" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></a></td>
                         </tr>
                     <% }) %>
                 </div>

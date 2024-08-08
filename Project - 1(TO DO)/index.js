@@ -3,20 +3,18 @@ const app = express()
 app.use(express.urlencoded({ extended: true }))
 app.set('view engine', 'ejs')
 
-var allTask = [
-    {
-        id: 1,
-        task: 'Learning',
-        priority: 'High',
-        iscomplete: false
-    }
-]
+// Data Array of this app
+var allTask = []
 
 app.get('/', (req, res) => {
     const activeTask = allTask.filter((el) => el.iscomplete == false);
     const completeTask = allTask.filter((el) => el.iscomplete == true);
 
-    res.render('index', { activeTask, completeTask });
+    if(allTask.length == 0){
+        res.render('noTask')
+    } else{
+        res.render('index', { activeTask, completeTask });
+    }
 });
 
 app.post('/addtask', (req, res) => {
@@ -50,11 +48,12 @@ app.get('/editTask', (req, res) => {
 })
 
 app.post('/updateTask', (req, res) => {
-    const { id, task } = req.body
+    const { id, task, priority } = req.body
     const data = allTask.find(el => el.id == id)
 
     if (data) {
         data.task = task
+        data.priority = priority
     }
 
     res.redirect('/')
