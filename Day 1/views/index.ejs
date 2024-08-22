@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,10 +11,6 @@
             background-color: #f4f4f4;
             margin: 0;
             padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
             height: 100vh;
         }
 
@@ -61,7 +58,8 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
-        th, td {
+        th,
+        td {
             padding: 15px;
             border-bottom: 1px solid #ddd;
             text-align: center;
@@ -95,31 +93,39 @@
         }
     </style>
 </head>
-<body>
-    <h1>Form</h1>
-    <form action="/insertData" method="post">
-        <input type="text" placeholder="Enter Name Here" name="name" required><br>
-        <input type="text" placeholder="Enter Subject Here" name="subject" required><br>
-        <input type="submit" value="Submit">
-    </form>
 
-    <h1>Data Table</h1>
-    <table>
-        <tr>
-            <th>Name</th>
-            <th>Subject</th>
-            <th>Action</th>
-        </tr>
-        <% data.map((e) => { %>
-        <tr>
-            <td><%= e.name %></td>
-            <td><%= e.subject %></td>
-            <td>
-                <a href="/deleteData?id=<%= e.id %>"><button>Delete</button></a>
-                <a href="/editData?id=<%= e.id %>"><button>Edit</button></a>
-            </td>
-        </tr>
-        <% }) %>
-    </table>
+<body>
+    <center>
+        <h1>Form</h1>
+        <form action="/insertData" method="post">
+            <input type="text" placeholder="Enter Name Here" name="name" required><br>
+            <input type="text" placeholder="Enter Subject Here" name="subject" required><br>
+            <input type="submit" value="Submit">
+        </form>
+
+        <h1>Data Table</h1>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Subject</th>
+                <th>Action</th>
+            </tr>
+            <% data.map((e)=> { %>
+                <tr>
+                    <td>
+                        <%= e.name %>
+                    </td>
+                    <td>
+                        <%= e.subject %>
+                    </td>
+                    <td>
+                        <a href="/deleteData?id=<%= e.id %>"><button>Delete</button></a>
+                        <a href="/editData?id=<%= e.id %>"><button>Edit</button></a>
+                    </td>
+                </tr>
+                <% }) %>
+        </table>
+    </center>
 </body>
+
 </html>
