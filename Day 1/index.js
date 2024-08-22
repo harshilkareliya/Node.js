@@ -21,6 +21,16 @@ app.get('/deleteData', async (req, res) => {
     data? res.redirect("back") : console.log('Data not Deleted')  
 })
 
+app.get('/editData', async (req,res)=>{
+    const singleData = await crudSchema.findById(req.query.id)
+    singleData ? res.render('edit', {singleData}) : console.log('Data not found')
+})
+
+app.post('/updateData', async (req,res)=>{
+    const data = await crudSchema.findByIdAndUpdate(req.query.id, req.body)
+    data ? res.redirect("/") : console.log('Data not Updated')
+})
+
 app.listen(port, (err)=> {
     err ? console.log(err) : console.log("Server Started on port " + port);
 })
