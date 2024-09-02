@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost:27017/F_TODO');
+mongoose.connect('mongodb://localhost:27017/Classes1');
 
 const db = mongoose.connection
 
