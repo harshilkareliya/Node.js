@@ -1,0 +1,358 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.name{
+    width: 80%;
+    height: 200px;
+    /* border: 1px solid black; */
+    text-align: center;
+    margin-left: 10%;
+    background-color: rgba(212, 210, 210, 0.205);
+}
+
+.name h1{
+    padding-top: 80px;
+    letter-spacing: 5px;
+    /* font-family: 'Rubik Puddles', cursive; */
+    /* font-family: 'Abril Fatface', cursive; */
+    /* font-family: 'Faster One', cursive; */
+    /* font-family: 'Rubik Dirt', cursive; */
+    /* font-family: 'Rubik Pixels', cursive; */
+    font-family: 'Rye', cursive;
+    /* font-family: 'Satisfy', cursive; */
+    /* font-family: 'Sonsie One', cursive; */
+}
+.name h2{
+    font-family: 'Abril Fatface', cursive;
+    /* font-family: 'Faster One', cursive; */
+    /* font-family: 'Rubik Dirt', cursive; */
+    /* font-family: 'Rubik Pixels', cursive; */
+    /* font-family: 'Rye', cursive; */
+    /* font-family: 'Satisfy', cursive; */
+    /* font-family: 'Sonsie One', cursive; */
+    letter-spacing: 7px;
+    word-spacing: 10px;
+}
+
+.main{
+    width: 80%;
+    height: 860px;
+    /* border: 1px solid black; */
+    margin-left: 10%;
+    background-color: rgba(212, 210, 210, 0.205);
+}
+.photos{
+    width: 60%;
+    height: 825px;
+    /* border: 1px solid black; */
+    margin-left: 18%
+}
+.photos1{
+    width: 32.6%;
+    height: 200px;
+    /* border: 1px solid black; */
+    float: left;
+}
+.photos1 img{
+    width: 100%;
+    height: 100%;
+}
+.photos1 img:hover{
+    opacity: .5;
+}
+.photos2{
+    width: 32.6%;
+    height: 200px;
+    /* border: 1px solid black; */
+    float: left;
+    margin-left: 1%;
+}
+.photos2 img{
+    width: 100%;
+    height: 100%;
+}
+.photos2 img:hover{
+    opacity: .5;
+}
+.photos3{
+    width: 32.6%;
+    height: 200px;
+    /* border: 1px solid black; */
+    float: left;
+    margin-left: 1%;
+}
+.photos3 img{
+    width: 100%;
+    height: 100%;
+}
+.photos3 img:hover{
+    opacity: .5;
+}
+.photos4{
+    width: 32.6%;
+    height: 250px;
+    /* border: 1px solid black; */
+    float: left;
+    margin-top: 10px;
+}
+.photos4 img{
+    width: 100%;
+    height: 100%;
+}
+.photos4 img:hover{
+    opacity: .5;
+}
+.photos5 {
+    width: 32.6%;
+    height: 200px;
+    /* border: 1px solid black; */
+    float: left;
+    margin-left: 1%;
+    margin-top: 10px;
+}
+.photos5 img{
+    width: 100%;
+    height: 100%;
+}
+.photos5 img:hover{
+    opacity: .5;
+}
+.photos6 {
+    width: 32.6%;
+    height: 200px;
+    /* border: 1px solid black; */
+    float: left;
+    margin-left: 1%;
+    margin-top: 10px;
+}
+.photos6 img{
+    width: 100%;
+    height: 100%;
+}
+.photos6 img:hover{
+    opacity: .5;
+}
+.photos7{
+    width: 32.6%;
+    height: 400px;
+    /* border: 1px solid black; */
+    float: left;
+    margin-top: 10px;
+    margin-left: 1%;
+}
+.photos7 img{
+    width: 100%;
+    height: 100%;
+}
+.photos7 img:hover{
+    opacity: .5;
+}
+.photos8 {
+    width: 32.6%;
+    height: 200px;
+    /* border: 1px solid black; */
+    float: left;
+    margin-top: 10px;
+    margin-left: 1%;
+}
+.photos8 img{
+    width: 100%;
+    height: 100%;
+}
+.photos8 img:hover{
+    opacity: .5;
+}
+.photos9 {
+    width: 32.6%;
+    height: 200px;
+    /* border: 1px solid black; */
+    float: left;
+    margin-top: -350px;
+    margin-right: 100px;
+    
+}
+.photos9 img{
+    width: 100%;
+    height: 100%;
+}
+.photos9 img:hover{
+    opacity: .5;
+}
+
+
+.footer{
+    width: 80%;
+    height: 50px;
+    border: 1px solid black;
+    margin-left: 10%;
+    background-color: black;
+    text-align: center;
+}
+.footer a{
+    padding: 20px;
+    color: white;
+    text-decoration: none;
+    line-height: 50px;
+    font-weight: bold;
+}
+.footer a:hover{
+    color: yellow;
+}
+.extra{
+    height: 100px;
+    width: 80%;
+    margin-left: 10%;
+    text-align: center;
+}
+
+.about{
+    width: 80%;
+    margin-left: 10%;
+    height: 600px;
+    background-color: rgba(212, 210, 210, 0.205);
+}
+.about .about1{
+    width: 60%;
+    height: 500px;
+    /* border: 1px solid black; */
+    margin-left: 20%;
+    display: flex;
+}
+.about .about1 .about2{
+    width: 49%;
+    height: 500px;
+    /* border: 1px solid black; */
+}
+.about .about1 .about2 img{
+    margin-top: 100px;
+}
+.about .about1 .about3{
+    width: 49%;
+    height: 500px;
+    margin-left: 2%;
+    /* border: 1px solid black; */
+}
+.about .about1 .about3 p{
+    line-height: 25px;
+}
+
+.conmain{
+    width: 80%;
+    height: 1000px;
+    margin-left: 10%;
+    background-color: rgba(212, 210, 210, 0.205);
+    /* border: 1px solid black; */
+    /* margin-left: 10%; */
+}
+.I{
+    width: 50%;
+    height: 1000px;
+    /* border: 1px solid black;     */
+    /* margin-top: 50px; */
+    margin-left: 25%;
+    background-color: white;
+}
+
+ .I h1{
+    text-align: center;
+    font-size: 40px;
+    padding-top: 100px;
+}
+
+ .I .I1{
+    width: 30%;
+    height: 800px;
+    /* border: 1px solid black; */
+    margin-left: 10%;
+    margin-top: 50px;
+    float: left;
+}
+
+ .I .I1 p{
+    font-size: 23px;
+}
+
+
+ .I .I2{
+    width: 50%;
+    height: 800px;
+    /* border: 1px solid black; */
+    margin-left: 10%;
+    margin-top: 50px;
+    float: right;
+}
+
+ .I .I2 form {
+    font-size: 23px;    
+}
+
+ .I .I2 form input{
+    width: 75%  ;
+    height: 30px;
+    margin-top: 8px;
+    border: 1px solid black;
+}
+
+
+ .I .I2 form .I2a{
+    width: 75%;
+    height: 120px;
+}
+
+ .I .I2 form button{
+    width: 75%;
+    height: 30px;
+    background-color: black;
+    color: white;
+    transition: 1s;
+}
+
+ .I .I2 form button:hover {
+    background-color: gray;
+}
+
+.book{
+    width: 80%;
+    height: 551px;
+    /* border: 1px solid black; */
+    margin-left: 10%;
+    background-color: rgba(212, 210, 210, 0.205);
+}
+.book .book1{
+    width: 60%;
+    height: 500px;
+    /* border: 1px solid black; */
+    margin-left: 20%;
+    padding-top: 50px;
+}
+.book .book1 h2{
+    letter-spacing: 2px;
+}
+.book .book1 .book2{
+    width: 100%;
+    height: 321px;
+    /* border: 1px solid black; */
+    display: flex;
+    flex: wrap;
+}
+.book .book1 .book2 .book2a{
+    width: 50%;
+    height: 321pxpx;
+}
+.book .book1 .book2 .book2b{
+    width: 50%;
+    height: 321pxpx;
+    text-align: center;
+    background-color: white;
+}
+.book .book1 .book2 .book2b button{
+    padding: 13px;
+    background-color: black;
+    color: white;
+}
+.book .book1 .book2 .book2b button:hover{
+    background-color: white;
+    color: black;
+}

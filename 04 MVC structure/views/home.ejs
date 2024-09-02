@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graphics Designer</title>
+    <link rel="stylesheet" href="/styles/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik+Puddles&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Faster+One&family=Rubik+Dirt&family=Rubik+Pixels&family=Rye&family=Satisfy&family=Sonsie+One&display=swap"
+        rel="stylesheet">
+    <style>
+        /* Your inline CSS remains the same */
+    </style>
+
+</head>
+
+<body id="PORTFOLIO">
+
+    <div class="name">
+        <h1>HARSHIL KARELIYA</h1> <br>
+        <h2>GRAPHIC DESIGN PORTFOLIO</h2>
+    </div>
+
+    <div class="main">
+        <div class="photos">
+            <% for(let i=1; i<=9; i++) { %>
+                <div class="photos<%= i %>">
+                    <img src="/images/img<%= i %>.jpg" alt="Image <%= i %>">
+                </div>
+            <% } %>
+        </div>
+    </div>
+
+    <div class="footer">
+        <a href="/">PORTFOLIO</a>
+        <a href="/about">ABOUT</a>
+        <a href="/contact">CONTACT</a>
+        <a href="/book">BOOK ONLINE</a>
+    </div>
+
+    <div class="extra">
+        <br> © 2035 by Sasha Blake. Powered and secured by Wix
+    </div>
+</body>
+
+</html>
