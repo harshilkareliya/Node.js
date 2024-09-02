@@ -56,8 +56,12 @@ app.post('/insertData', posterUpload, async (req, res) => {
 
 app.get('/deleteData', async (req, res) => {
     const data = await movieSchema.findById(req.query.id);
-    if (data && data.poster) {
+    
+    if (data.poster) {
         fs.unlinkSync(data.poster);
+    }
+    if (data.coverImg) {
+        fs.unlinkSync(data.coverImg);
     }
     const isDelete = await movieSchema.findByIdAndDelete(req.query.id);
     isDelete ? res.redirect('/') : console.log('Not Deleted');
@@ -84,7 +88,7 @@ app.post('/updateData', posterUpload, async (req, res) => {
             cover = req.files.coverImg[0].path
         }
     } 
-    
+
     req.body.poster = post;
     req.body.coverImg = cover;
     const isUpdate = await movieSchema.findByIdAndUpdate(req.query.id, req.body);
