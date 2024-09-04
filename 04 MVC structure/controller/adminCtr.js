@@ -1,15 +1,36 @@
 module.exports.home = (req,res)=>{
-    res.render('home')
+    try{
+        res.render('home')
+    }
+    catch(err){
+        console.error(err)
+        res.status(500).send('Server Error')
+    }
 }
 
 module.exports.about = (req,res)=>{
-    res.render('about')
+    try{
+        res.render('about')
+    } catch(err){
+        console.error(err)
+        res.status(500).send('Server Error')
+    }
 }
 
 module.exports.book = (req,res)=>{
-    res.render('book')
+    try{
+        res.render('book')
+    } catch(err){
+        console.error(err)
+        res.status(500).send('Server Error')
+    }
 }
 
 module.exports.contact = (req,res)=>{
-    res.render('contact')
+    try{
+        res.render('contact')
+    } catch(err){
+        console.error(err)
+        res.status(500).send('Server Error')
+    }
 }
