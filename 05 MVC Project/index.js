@@ -13,4 +13,4 @@ app.use('/', require('./routes'));
 
 app.listen(1008,(err)=>{
     err ? console.error(err) : console.log('Server is running on port 1008');
-})
+});
