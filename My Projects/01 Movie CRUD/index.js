@@ -49,10 +49,8 @@ app.get("/", async (req, res) => {
 });
 
 app.post("/insertData", posterUpload, async (req, res) => {
-  if(req.files){
-    req.body.poster = req.files.poster[0].path;
-    req.body.coverImg = req.files.coverImg[0].path;
-  }
+  req.body.poster = req.files.poster[0].path;
+  req.body.coverImg = req.files.coverImg[0].path;
 
   const insert = await movieSchema.create(req.body);
   insert ? res.redirect("/") : console.log("Not Inserted Successfully");
@@ -98,7 +96,9 @@ app.post("/updateData", posterUpload, async (req, res) => {
   req.body.poster = post;
   req.body.coverImg = cover;
   const isUpdate = await movieSchema.findByIdAndUpdate(req.query.id, req.body);
-  isUpdate? res.redirect(`/fullDetail?id=${req.query.id}`): console.log("Data not Updated");
+  isUpdate
+    ? res.redirect(`/fullDetail?id=${req.query.id}`)
+    : console.log("Data not Updated");
 });
 
 app.get("/addMovie", (req, res) => {

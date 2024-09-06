@@ -9,7 +9,7 @@ module.exports.home = (req,res)=>{
 }
 
 module.exports.about = (req,res)=>{
-    try{
+    try{``
         res.render('about')
     } catch(err){
         console.error(err)
