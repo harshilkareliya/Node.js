@@ -26,5 +26,6 @@ routes.post('/addData',upload,admin.addData)
 routes.get('/deleteData',admin.deleteData)
 routes.get('/editData',admin.editData)
 routes.post('/updateData',upload,admin.updateData)
+routes.get('/detail',admin.detail)
 
 module.exports = routes;

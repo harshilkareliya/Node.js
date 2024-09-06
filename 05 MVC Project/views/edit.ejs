@@ -27,7 +27,7 @@
 <body>
   <div class="form-container">
     <h2 class="form-header text-center">Add Movie</h2>
-    <form action="/updateData?id=<%=data.id%>" method="post" >
+    <form action="/updateData?id=<%=data.id%>" method="post" enctype="multipart/form-data">
       <div class="mb-3">
         <label for="title" class="form-label">Title</label>
         <input type="text" value="<%=data.title%>" name="title" class="form-control" id="title" placeholder="Enter movie title">

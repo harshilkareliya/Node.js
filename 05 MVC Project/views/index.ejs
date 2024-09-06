@@ -82,7 +82,7 @@
     <!-- Movie Card Section -->
     <div class="container mt-5 row">
         <%data.map((e)=>{%>
-          <div class="card mx-auto col-4" style="width: 18rem">
+          <div class="card mx-auto col-4" style="width: 18rem" onclick="window.location.href='/detail?id=<%= e.id %>'">
             <img
               src="<%=e.coverImg%>"
               class="card-img-top"
@@ -96,8 +96,10 @@
               <h5 class="title"><%=e.title%></h5>
               <p class="genre"><%=e.genre%></p>
             </div>
-            <a href="/editData?id=<%=e.id%>"><button class="btn btn-warning">Edit</button></a>
-            <a href="/deleteData?id=<%=e.id%>"><button class="btn btn-primary">Delete</button></a>
+            <div style="display: flex;">
+              <a href="/editData?id=<%=e.id%>"><button class="btn btn-warning">Edit</button></a> &nbsp;&nbsp;
+               <a href="/deleteData?id=<%=e.id%>"><button class="btn btn-primary">Delete</button></a>
+            </div>
           </div>
         <%})%>
     </div>
