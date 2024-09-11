@@ -1,0 +1,24 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.calendar {
+    max-width: 900px;
+    margin: 20px auto;
+}
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.calendar-header h1 {
+    margin: 0;
+}
+.calendar-header .btn-group {
+    margin-left: auto;
+}
+.calendar-header .btn-group .btn {
+    border-radius: 0;
+}
