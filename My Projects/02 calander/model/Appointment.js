@@ -1,10 +1,24 @@
-// const mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
-// const appointmentSchema = new mongoose.Schema({
-//   title: String,
-//   date: Date,
-//   startTime: String,
-//   endTime : String,
-// });
+const schema = mongoose.Schema({
+  title : {
+    type : String,
+    // required : true
+  },
+  date : {
+    type : String,
+    // required : true
+  },
+  startTime : {
+    type : String,
+    // required : true
+  },
+  endTime : {
+    type : String,
+    // required : true
+  }
+});
 
-// module.exports = mongoose.model('Calander Project', appointmentSchema);
+const appointmentSchema =  mongoose.model('Appointment Data', schema);
+
+module.exports = appointmentSchema;

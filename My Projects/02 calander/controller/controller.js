@@ -1,4 +1,4 @@
-
+const appointmentSchema = require('../model/Appointment')
 function createMonth(year, month) {
     const thisMonth = [];
     const firstDayOfMonth = new Date(year, month, 1).getDay(); // Date 1 which day ?
@@ -39,7 +39,7 @@ function createMonth(year, month) {
         thisMonth.push(week);
     }
 
-    console.log(thisMonth)
+    // console.log(thisMonth)
     return thisMonth;
 }
 
@@ -53,9 +53,14 @@ module.exports.home = (req,res)=>{
     const monthsName = ['January', 'February', 'March', 'April', 'May', 'June','July', 'August', 'September', 'October', 'November', 'December'];
     const thisMonth = createMonth(year, month);    
     
-    res.render('month', { thisMonth, year, month : monthsName[month] });
+    res.render('month', { thisMonth, year, month : monthsName[month],monthNumber : month });
 }
 
-module.exports.addAppoitment = (req, res)=>{
-    res.redirect('/add')
-}
+module.exports.addAppoitment = async (req, res)=>{
+    try{
+        const isAdd = await appointmentSchema.create(req.body)
+        isAdd ? res.redirect('/') : console.log('Data Not Add Properly');
+    } catch(err){
+        console.log(err);
+    }
+} 
