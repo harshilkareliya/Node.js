@@ -4,6 +4,7 @@ const controller = require('../controller/controller')
 
 routes.get('/', controller.home)
 routes.get('/Month', controller.month)
-routes.post('/addAppoitment', controller.addAppoitment)
-
+routes.post('/addAppointment', controller.addAppointment)
+routes.get('/deleteAppointment',controller.deleteAppointment)
+routes.post('/editAppointment', controller.editAppointment)
 module.exports = routes

@@ -47,20 +47,64 @@ module.exports.month = (req,res)=>{
     
 }
 
-module.exports.home = (req,res)=>{
+module.exports.home = async (req,res)=>{
     const year = new Date().getFullYear();
     const month = new Date().getMonth();
     const monthsName = ['January', 'February', 'March', 'April', 'May', 'June','July', 'August', 'September', 'October', 'November', 'December'];
     const thisMonth = createMonth(year, month);    
-    
-    res.render('month', { thisMonth, year, month : monthsName[month],monthNumber : month });
+    const today = new Date().toISOString().slice(0,10); // Get today's date in 'YYYY-MM-DD' format
+
+    const appointments = await appointmentSchema.find({
+        $expr: {
+            $eq: [{ $substr: ["$date", 5, 2] }, (month + 1).toString().padStart(2, '0')] // Match current month (01 for Jan, 02 for Feb, etc.)
+        }
+    });
+
+    const showappointments = appointments.map((e)=>{
+        return{
+            year: parseInt(e.date.substring(0,4)),
+            month: parseInt(e.date.substring(5,7)),
+            day: parseInt(e.date.substring(8,10)),
+            date: e.date,
+            title: e.title,
+            startTime: e.startTime,
+            endTime: e.endTime,
+            id: e.id
+        }
+    })
+    // console.log(showappointments)
+    res.render('month', { thisMonth, year, month : monthsName[month],monthNumber : (month<9 ?'0':'')+(month+1),showappointments,today});
 }
 
-module.exports.addAppoitment = async (req, res)=>{
+module.exports.addAppointment = async (req, res)=>{
     try{
+        let dateParts = req.body.date.split('/');
+        let formattedDate = `${dateParts[2]}-${dateParts[1]}-${dateParts[0]}`;
+ 
+        req.body.date = formattedDate;
         const isAdd = await appointmentSchema.create(req.body)
         isAdd ? res.redirect('/') : console.log('Data Not Add Properly');
     } catch(err){
         console.log(err);
     }
 } 
+
+module.exports.deleteAppointment = async (req, res)=>{
+    try{
+        const isdelete = await appointmentSchema.findByIdAndDelete(req.query.id);
+        isdelete ? res.redirect('/') : console.log('Data Not Deleted'); 
+    }  catch(err){
+        console.log(err);
+    }
+}
+
+module.exports.editAppointment = async (req, res)=>{
+    try{
+        console.log(req.body)
+        console.log("Edit id :- "+req.query.id)
+        const isedit = await appointmentSchema.findByIdAndUpdate(req.query.id,req.body)
+        isedit ? res.redirect('/') : console.log('Data Not Edit')
+    } catch(err){
+        console.log(err);
+    }
+}
