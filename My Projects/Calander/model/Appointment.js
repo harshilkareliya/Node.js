@@ -3,19 +3,19 @@ const mongoose = require('mongoose');
 const schema = mongoose.Schema({
   title : {
     type : String,
-    // required : true
+    required : true
   },
   date : {
     type : String,
-    // required : true
+    required : true
   },
   startTime : {
     type : String,
-    // required : true
+    required : true
   },
   endTime : {
     type : String,
-    // required : true
+    required : true
   }
 });
 

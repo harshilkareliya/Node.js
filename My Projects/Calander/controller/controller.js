@@ -8,7 +8,7 @@ function createMonth(year, month) {
     const prevMonth = new Date(year, month, 0).getDate();
     // console.log(prevMonth)
 
-    let week = new Array(7); // Create an null aray
+    let week = new Array(7); // Create an aray
     let day = 1;
 
     for(let i = 0; i < firstDayOfMonth;i++){
@@ -45,12 +45,22 @@ function createMonth(year, month) {
 
 module.exports.home = async (req, res) => {
     let year = parseInt(req.query.year) || new Date().getFullYear();
-    let month = parseInt(req.query.month) || new Date().getMonth(); // Zero-based month (0 for January)
+    let month = parseInt(req.query.month) - 1 || new Date().getMonth();  // Subtract 1 because `getMonth()` is zero-based (0 for January)
 
-    const monthsName = ['January', 'February', 'March', 'April', 'May', 'June','July', 'August', 'September', 'October', 'November', 'December'];
+    // Correct the edge cases for months
+    if (month < 0) {
+        month = 11; // December
+        year -= 1; // Move to the previous year
+    } else if (month > 11) {
+        month = 0; // January
+        year += 1; // Move to the next year
+    }
+
+    const monthsName = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
     const thisMonth = createMonth(year, month);    
-    const today = new Date().toISOString().slice(0,10); // Get today's date in 'YYYY-MM-DD' format
+    const today = new Date().toISOString().slice(0,10); 
 
+    // Fetch appointments for the specific year and month
     const appointments = await appointmentSchema.find({
         $expr: {
             $and: [
@@ -58,30 +68,11 @@ module.exports.home = async (req, res) => {
                 { $eq: [{ $substr: ["$date", 5, 2] }, (month + 1).toString().padStart(2, '0')] } // Match the month (01 for Jan, etc.)
             ]
         }
-    });    
-
-    const showappointments = appointments.map((e) => {
-        return {
-            year: parseInt(e.date.substring(0, 4)),
-            month: parseInt(e.date.substring(5, 7)),
-            day: parseInt(e.date.substring(8, 10)),
-            date: e.date,
-            title: e.title,
-            startTime: e.startTime,
-            endTime: e.endTime,
-            id: e.id
-        };
     });
 
-    res.render('month', { 
-        thisMonth, 
-        year, 
-        month: monthsName[month], 
-        monthNumber: (month < 9 ? '0' : '') + (month + 1), 
-        showappointments, 
-        today 
-    });
+    res.render('home', { year, monthNumber: (month + 1).toString().padStart(2, '0'), monthsName, thisMonth, appointments, today });
 };
+
 
 module.exports.addAppointment = async (req, res)=>{
     try{

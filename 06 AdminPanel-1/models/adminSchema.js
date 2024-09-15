@@ -12,7 +12,7 @@ const schema = mongoose.Schema({
     email : {
         type: String,
         // required: true,
-        // unique: true
+        unique: true
     },
     password : {
         type: String,
@@ -23,6 +23,10 @@ const schema = mongoose.Schema({
         // required: true
     },
     message : {
+        type: String,
+        // required: true
+    },
+    image : {
         type: String,
         // required: true
     }
