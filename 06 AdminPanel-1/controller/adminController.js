@@ -53,7 +53,7 @@ module.exports.updateAdmin = async (req, res) => {
     image = req.file.path;
   }
   req.body.image = image;
-  const isUpdate = await adminSchema.findByIdAndUpdate(req.query.id, req.body);
+  const isUpdate = await adminSchema.findByIdAndUpdxate(req.query.id, req.body);
   isUpdate
     ? res.redirect("/viewAdmin")
     : console.log("Error While Update Admin");

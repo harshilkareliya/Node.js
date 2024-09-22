@@ -1,7 +1,14 @@
-module.exports = (req,res,next)=>{
-    if (!req.cookies.adminData) {
-        return res.redirect('/');  // Redirect to login page if no cookie
-    }
+const adminSchema = require("../models/adminSchema");
 
-    next();
-}
+module.exports = async (req, res, next) => {
+  if (req.cookies.adminData !== undefined) {
+    const data = await adminSchema.findById(req.cookies.adminData._id);
+    if (!data) {
+      return res.redirect("/");
+    } else {
+      next();
+    }
+  } else {
+    return res.redirect("/");
+  }
+};
