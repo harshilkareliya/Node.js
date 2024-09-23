@@ -13,6 +13,14 @@ const schema = mongoose.Schema({
     password : {
         type: String,
         // required: true
+    },
+    age : {
+        type : Number,
+        // required: true
+    },
+    mobile : {
+        type : Number,
+        // required: true
     }
 })
 

@@ -75,3 +75,4 @@ module.exports.charts = (req, res) => {
 module.exports.widgets = (req, res) => {
   res.render("widgets");
 };
+
