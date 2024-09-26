@@ -5,11 +5,13 @@ const db = require('./config/db')
 const passport = require('passport');
 const session = require('express-session')
 const passportSt = require('./config/passport')
+const flash = require('connect-flash')
+const connectFlash = require('./config/flashConnect')
 
 app.use(express.urlencoded());
 app.set("view engine", "ejs");
 app.use('/',express.static(path.join(__dirname,"public")))
-
+app.use(flash())
 app.use(
     session({
       name: "Users",

@@ -13,8 +13,13 @@ module.exports.loginUser = async (req, res) => {
   if (!user) {
     return res.redirect("/");
   }
-  user.password == req.body.password ? res.redirect("/") : res.redirect("back");
-  // res.redirect('/')
+  if(user.password == req.body.password){
+    req.flash("success", "Login successfully")
+    res.redirect("/")
+  }   
+  else{
+    res.redirect("back");
+  }
 };
 
 module.exports.register = (req, res) => {
@@ -81,7 +86,9 @@ module.exports.deleteUser = async (req, res) => {
 module.exports.editUser = async (req, res) => {
   try {
     const data = await userSchema.findById(req.query.id);
-    data? res.render("pages/editUser", { data }) : console.log("Data Not Found");
+    data
+      ? res.render("pages/editUser", { data })
+      : console.log("Data Not Found");
   } catch (error) {
     console.log(error);
   }
@@ -89,9 +96,50 @@ module.exports.editUser = async (req, res) => {
 
 module.exports.updateUser = async (req, res) => {
   try {
-    const isUpdate = await userSchema.findByIdAndUpdate(req.query.id,req.body);
+    const data = await userSchema.findById(req.query.id);
+    req.body.password = data.password;
+
+    const isUpdate = await userSchema.findByIdAndUpdate(req.query.id, req.body);
     isUpdate ? res.redirect("/viewUsers") : console.log("Data Not Update");
   } catch (error) {
     console.log(error);
   }
-}
+};
+
+module.exports.myProfile = async (req, res) => {
+  try {
+    res.render("pages/profile");
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+module.exports.changePassword = async (req, res) => {
+  try {
+    res.render("pages/changePassword");
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+module.exports.updatePassword = async (req, res) => {
+  try {
+    const user = await userSchema.findById(req.user.id);
+
+    if (user.password == req.body.oldPassword) {
+      user.password = req.body.newPassword;
+      const isUpdate = await user.save();
+      if (isUpdate) {
+        return res.redirect("/logOut");
+      } else {
+        console.log("Password Not Update");
+        return res.redirect("/changePassword");
+      }
+    } else {
+      console.log("Current Password is incorrect");
+      return res.redirect("/changePassword");
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};

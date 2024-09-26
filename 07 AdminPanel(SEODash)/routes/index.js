@@ -17,9 +17,12 @@ router.get('/logout', passport.checkAuthantication, controller.logout)
 router.get('/viewUsers',passport.checkAuthantication,  controller.viewUsers)
 router.get('/deleteUser',passport.checkAuthantication,  controller.deleteUser)
 router.get('/editUser',passport.checkAuthantication,  controller.editUser)
+router.get('/myProfile', passport.checkAuthantication, controller.myProfile)
+router.get('/changePassword', passport.checkAuthantication, controller.changePassword)
 
 router.post('/register', controller.singup)
 router.post('/login', passport.authenticate("local", {failureRedirect : '/login'}),controller.loginUser)
 router.post('/updateUser',passport.checkAuthantication, controller.updateUser)
+router.post('/updatePassword', passport.checkAuthantication, controller.updatePassword)
 
 module.exports = router
