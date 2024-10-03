@@ -1,4 +1,5 @@
 const userSchema = require("../model/user");
+const mailer = require('../config/mailer')
 
 module.exports.dashboard = (req, res) => {
   res.render("index");
@@ -143,3 +144,47 @@ module.exports.updatePassword = async (req, res) => {
     console.log(error);
   }
 };
+
+module.exports.forgetPasswordOpen = (req,res)=>{
+  res.render('pages/forgetPassword')
+}
+
+module.exports.forgetPasswordCheck = async (req,res)=>{
+  const user = await userSchema.findOne({email: req.body.email})
+  if(user){
+    const otp = Math.floor(1000 + Math.random() * 9000);
+    mailer.sendOtp(user.email, otp);
+    req.session.otp = otp,
+    req.session.adminId = user.id
+    const msg = "OTP sent successfully"
+    res.render('pages/otp', {msg: msg})
+  } else{
+    req.flash("error", "Email unvalid")
+    res.redirect('/forgetPassword')
+  }
+}
+
+module.exports.otpVerification = (req,res)=>{
+  if(req.body.otp == req.session.otp){
+    res.render('pages/newPassword')
+  }
+  else{
+    const msg = "Invalid OTP Please Enter Right OTP"
+    res.render('pages/otp' , {msg : msg})
+  }
+}
+
+module.exports.newforgetedPassword = async (req, res)=>{
+  try {
+    const user = await userSchema.findByIdAndUpdate(req.session.adminId, {password: req.body.newPassword})
+    if(user){
+      req.flash("success", "Password Changed Successfully")
+      res.redirect('/login')
+    } else{
+      req.flash("error", "Something went wrong")
+      res.redirect('/forgetPassword')
+    }
+  } catch (error) {
+    console.log(error)
+  }
+}

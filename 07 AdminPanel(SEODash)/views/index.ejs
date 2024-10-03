@@ -27,13 +27,13 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title d-flex align-items-center gap-2 mb-4">
-                          <% if(locals.flash){ %>
-                            <%= locals.flash.success%>
-                          <% } %>
-                            Traffic Overview
-                            <span>
-                                <iconify-icon icon="solar:question-circle-bold" class="fs-7 d-flex text-muted" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="tooltip-success" data-bs-title="Traffic Overview"></iconify-icon>
-                            </span>
+                          Traffic Overview
+                          <span>
+                            <iconify-icon icon="solar:question-circle-bold" class="fs-7 d-flex text-muted" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="tooltip-success" data-bs-title="Traffic Overview"></iconify-icon>
+                          </span>
+                          <% if (flash && flash.success) { %>
+                            <div class="alert alert-success"><%= flash.success %></div>
+                         <% } %>
                         </h5>
                         <div id="traffic-overview" >
                         </div>

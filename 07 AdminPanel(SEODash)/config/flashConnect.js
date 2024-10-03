@@ -1,4 +1,4 @@
-module.exports.flash = (req,res)=>{
-    req.flash('success', 'Login Successful!')
-    res.redirect('/')
+module.exports.flashData = (req,res,next)=>{
+    res.locals.flash = req.flash();
+    next()
 }

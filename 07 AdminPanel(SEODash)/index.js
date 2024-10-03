@@ -11,7 +11,7 @@ const connectFlash = require('./config/flashConnect')
 app.use(express.urlencoded());
 app.set("view engine", "ejs");
 app.use('/',express.static(path.join(__dirname,"public")))
-app.use(flash())
+app.use('/uploads/products', express.static(path.join(__dirname, "uploads/products")))
 app.use(
     session({
       name: "Users",
@@ -24,8 +24,13 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(passport.authUser)
+app.use(flash())
+app.use(connectFlash.flashData)
 
 app.use('/', require('./routes'))
+app.use('/category', require('./routes/category'))
+app.use('/subcategory', require('./routes/subcategory'))
+app.use('/products', require('./routes/products'))
 
 app.listen(1008, (err)=>{
     console.log(err ? err : "Server running on port 1008");
