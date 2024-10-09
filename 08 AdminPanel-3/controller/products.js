@@ -3,7 +3,6 @@ const categorySchema = require('../model/category')
 const subcategorySchema = require('../model/subcategory')
 const path = require('path')
 const fs = require('fs')
-const { json } = require('body-parser')
 
 module.exports.addProduct = async (req,res)=>{
     const category = await categorySchema.find({})

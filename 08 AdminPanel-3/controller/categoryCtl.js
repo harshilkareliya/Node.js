@@ -30,7 +30,6 @@ module.exports.editCategory = async (req,res)=>{
 }
 
 module.exports.updateCategory = async (req,res)=>{
-    console.log(req.body, req.query.id);
     const isUpdate = await categorySchema.findByIdAndUpdate(req.query.id, req.body)
     isUpdate ? res.redirect('/category/viewCategory') : console.log("Error While updating category");
 }

@@ -17,7 +17,6 @@ module.exports.sendOtp = (to, otp)=>{
     }
 
     transport.sendMail(mailOptions, (err)=>{
-        // err && console.log(err);
         console.log(err ? err : 'OTP Send Successfully');
     })
 }
