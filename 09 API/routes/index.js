@@ -1,13 +1,11 @@
 const express = require('express');
 const routes = express.Router()
-const controller = require('../controller/admin')
+const controller = require('../controller/user')
 
-routes.get('/', controller.home);
+routes.get('/', (req,res)=>{
+    res.status(200).json({message : "You are in Home Page"})
+});
 
-routes.post('/insertData', controller.insertData);
-
-routes.delete("/deleteData", controller.deleteData);
-
-routes.put('/updateData', controller.updateData);
+routes.use('/user', require('./user'))
 
 module.exports = routes
