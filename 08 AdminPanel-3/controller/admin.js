@@ -53,17 +53,12 @@ module.exports.typography = (req, res) => {
 };
 
 module.exports.logout = (req, res) => {
-  req.logout((err) => {
-    if (err) {
-      return next(err); // Handle error if any occurs during logout
-    }
     req.session.destroy((err) => {
       if (err) {
-        return next(err); // Handle error during session destruction
+        return next(err); 
       }
-      res.redirect("/"); // Redirect to login or another page after logout
+      res.redirect("/");
     });
-  });
 };
 
 module.exports.viewUsers = async (req, res) => {

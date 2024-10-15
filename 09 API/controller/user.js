@@ -1,19 +1,11 @@
 const userSchema = require('../model/userSchema')
 const bcrypt = require('bcryptjs')
 const moment = require('moment')
+const jwt = require('jsonwebtoken')
 
 module.exports.viewUsers = async (req,res)=>{
-    const data = await userSchema.find({})
+    const data = await userSchema.find({})  
     res.status(200).json({data})    
-}
-
-module.exports.login = async (req,res)=>{
-    const user = await userSchema.findOne({email : req.body.email})
-    if(!user) return res.status(401).json({message : "Invalid Email"})
-
-    const isCompare = await bcrypt.compare(req.body.password,user.password)
-    if(isCompare) res.status(200).json({user})
-        else res.status(401).json({message :  "Invalid Password"})
 }
 
 module.exports.insertUser = async (req,res)=>{
@@ -22,6 +14,7 @@ module.exports.insertUser = async (req,res)=>{
         return res.status(200).json({message : "Email already exists"})
     }
 
+    const token = jwt.sign({ userData: user }, 'node', { expiresIn: '1h' });
     if(req.file){
         req.body.image = req.file.path;
     }
@@ -29,7 +22,19 @@ module.exports.insertUser = async (req,res)=>{
     req.body.createdAt = moment().format('MMMM Do YYYY, h:mm:ss a');
 
     const data = await userSchema.create(req.body)
-    res.status(201).json({message : "Data Inserted Successfully", data : data})
+    res.status(201).json({message : "Data Inserted Successfully", data : data,token})
+}
+
+module.exports.login = async (req,res)=>{
+    const user = await userSchema.findOne({email : req.body.email})
+    if(!user) return res.status(401).json({message : "Invalid Email"})
+
+    const isCompare = await bcrypt.compare(req.body.password,user.password)
+    if(isCompare){
+        const token = jwt.sign({ userData: user }, 'node', { expiresIn: '1h' });
+        res.status(200).json({token})
+    }
+    else res.status(401).json({message :  "Invalid Password"})
 }
 
 module.exports.deleteUser = async (req,res)=>{

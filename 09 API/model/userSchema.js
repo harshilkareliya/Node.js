@@ -30,5 +30,4 @@ const schema = mongoose.Schema({
 })
 
 const userSchema = mongoose.model("Project1", schema)
-
 module.exports = userSchema;

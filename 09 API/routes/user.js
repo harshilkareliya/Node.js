@@ -2,6 +2,7 @@ const express = require('express');
 const routes = express.Router()
 const controller = require('../controller/user')
 const multer = require('multer')
+const adminAuth = require('../config/authantication')
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -14,7 +15,7 @@ const storage = multer.diskStorage({
 
 const uploadImage = multer({ storage: storage }).single('image');
 
-routes.get('/', controller.viewUsers)
+routes.get('/',adminAuth,controller.viewUsers)
 
 routes.post('/login', controller.login)
 
