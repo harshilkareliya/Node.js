@@ -14,11 +14,15 @@ const schema = mongoose.Schema({
         type : String,
         required : true
     },
+    department : {
+        type : String,
+        required : true
+    },
     role : {
         type : String,
-        default : 'admin'
+        default : 'manager'
     }
 })
 
-const adminSchema = mongoose.model('Admins', schema)
-module.exports = adminSchema
+const managerSchema = mongoose.model('Manager', schema)
+module.exports = managerSchema
